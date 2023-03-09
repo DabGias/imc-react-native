@@ -26,11 +26,11 @@ function Calc() {
 
                 {imc == 0 ? "" : <Text style={styles.imcMsg}>O seu IMC é de: {imc.toFixed(2)}</Text>}
                 {imc == 0 ? "" 
-                : imc < 18.5 ? <Text style={styles.imcMsg}>Você está em estado de magreza!</Text>
-                : imc < 24.9 ? <Text style={styles.imcMsg}>Você está em boa forma!</Text>
-                : imc < 29.9 ? <Text style={styles.imcMsg}>Você está com sobrepeso!</Text>
-                : imc < 34.9 ? <Text style={styles.imcMsg}>Você está com obesidade grau I!</Text>
-                : imc < 39.9 ? <Text style={styles.imcMsg}>Você está com obesidade grau II!</Text>
+                : imc <= 18.5 ? <Text style={styles.imcMsg}>Você está em estado de magreza!</Text>
+                : imc <= 24.9 ? <Text style={styles.imcMsg}>Você está em boa forma!</Text>
+                : imc <= 29.9 ? <Text style={styles.imcMsg}>Você está com sobrepeso!</Text>
+                : imc <= 34.9 ? <Text style={styles.imcMsg}>Você está com obesidade grau I!</Text>
+                : imc <= 39.9 ? <Text style={styles.imcMsg}>Você está com obesidade grau II!</Text>
                 : <Text style={styles.imcMsg}>Você está com obesidade grau III!</Text>}
             </View>
         </>

@@ -12,10 +12,10 @@ function Calc() {
             <View>
                 <View style={styles.inputs}>
                     <Text>Peso</Text>
-                    <TextInput editable onChangeText={text => setPeso(text)} value={peso} style={styles.input}/>
+                    <TextInput keyboardType='numeric' editable onChangeText={text => setPeso(text)} value={peso} style={styles.input}/>
 
                     <Text>Altura</Text>
-                    <TextInput editable onChangeText={text => setAltura(text)} value={altura} style={styles.input}/>
+                    <TextInput keyboardType='numeric' editable onChangeText={text => setAltura(text)} value={altura} style={styles.input}/>
                 </View>
 
                 <Pressable style={styles.buttonCalc} onPress={() => {

@@ -1,8 +1,21 @@
-import React from "react"
-import { StyleSheet, View } from "react-native"
+import React, { useState } from "react"
+import { StyleSheet, View, Text } from "react-native"
+import { ScrollView } from "react-native-web"
 import Produto from "./Produto"
 
 function Produtos() {
+    const [total, setTotal] = useState(0)
+
+    function callBackAdd(preco) {
+        setTotal(total + preco)
+    }
+
+    function calBackRmv(preco) {
+        if (total != 0) {
+            setTotal(total - preco)
+        }
+    }
+
     const produtos = [
         { nome: "Barra de chocolate diet", desc: "Uma barra de chocolate com menos açucar.", preco: 10.00 },
         { nome: "Creatina", desc: "Galão de creatina.", preco: 50.00 },
@@ -16,14 +29,19 @@ function Produtos() {
     
     return(
         <View style={styles.main}>
-            <Produto produto={produtos[0]}/>
-            <Produto produto={produtos[1]}/>
-            <Produto produto={produtos[2]}/>
-            <Produto produto={produtos[3]}/>
-            <Produto produto={produtos[4]}/>
-            <Produto produto={produtos[5]}/>
-            <Produto produto={produtos[6]}/>
-            <Produto produto={produtos[7]}/>
+            <ScrollView style={styles.viewProdutos}>
+                {
+                    produtos.map((produto, index) => 
+                        <Produto
+                            index={index}
+                            produto={produto}
+                            callBackAdd={callBackAdd}
+                            callBackRmv={calBackRmv}
+                        />
+                    )
+                }
+            </ScrollView>
+            <Text><Text>Total: </Text>R$ {total}</Text>
         </View>
     )
 }
@@ -32,9 +50,15 @@ const styles = StyleSheet.create({
     main: {
         display: "flex",
         justifyContent: "center",
-        flexDirection: 'row',
         flexWrap: 'wrap',
     },
+
+    viewProdutos: {
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        alignContent: "center"
+    }
 })
 
 export default Produtos

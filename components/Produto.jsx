@@ -1,20 +1,35 @@
-import React from "react"
-import { StyleSheet, View, Text, Pressable } from "react-native"
+import React, { useState } from "react"
+import { StyleSheet, View, Text, Pressable, ScrollView } from "react-native"
 
 function Produto(props) {
+    const [qtd, setQtd] = useState(0)
+
+    function add() {
+        setQtd(qtd + 1)
+        props.callBackAdd(props.produto.preco)
+    }
+
+    function rmv() {
+        if (qtd != 0) {
+            setQtd(qtd - 1)
+            props.callBackRmv(props.produto.preco)
+        }
+    }
+
     return(
-        <View key={props.key} style={styles.container}>
+        <View key={props.index} style={styles.container}>
             <View>
                 <Text style={styles.txt}>Nome: {props.produto.nome}</Text>
                 <Text style={styles.txt}>Descrição: {props.produto.desc}</Text>
-                <Text style={styles.txt}>Preço: {props.produto.preco}</Text>
+                <Text style={styles.txt}>Preço: R${props.produto.preco}</Text>
+                <Text style={styles.txt}>Quant.: {qtd}</Text>
             </View>
 
             <View style={styles.buttons}>
-                <Pressable style={[styles.button, styles.btnAdd]}>
+                <Pressable style={[styles.button, styles.btnAdd]} onPress={() => { add() }}>
                     <Text style={styles.txtBtn}>+</Text>
                 </Pressable>
-                <Pressable style={[styles.button, styles.btnRmv]}>
+                <Pressable style={[styles.button, styles.btnRmv]} onPress={() => { rmv() }}>
                     <Text style={styles.txtBtn}>-</Text>
                 </Pressable>
             </View>
